@@ -23,5 +23,8 @@ scheme with IR LED PCB
    - in **main.ino** from line 25 to line 29 you can select your camera module model , by uncommenting line with name of your module. 
  ### 2nd step: compile and flash sketch into ESP32!
    - if you dont know how to do it , read Espressif docs on ESP32 boards.
-
+## 3D printing camera case parts
+<br> in the [/cadsrc](/cadsrc) folder is FreeCad project.
+<br> and in the [/export](/export) folder are .3mf files for 3D printing.
+<br>
 ### You can DM me in my discord (@purpurb.) , if i typed the word wrong way or something like that.   
