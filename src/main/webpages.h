@@ -1,5 +1,4 @@
-static const char PROGMEM TEST_HTML[] = R"rawliteral(
-
+static const char PROGMEM LOGIN_HTML[] = R"rawliteral(
 <html>
     <head>
         <meta charset=utf-8>
@@ -14,26 +13,8 @@ static const char PROGMEM TEST_HTML[] = R"rawliteral(
               font-weight: 600;
               font-style: normal;
             }
-            body { font-family: Montserrat; text-align: left; color: white;margin:0px auto; padding-left: 30px;background-color: #2d2430 }
-            .button {
-                background-color: #912db5;
-                background-image: linear-gradient(to bottom, #b440de, #912db5);
-                border-color: #673a78;
-                color: white;
-                padding: 10px 30px;
-                font-size: 18px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                border-radius: 8px;
-                margin: 2px 2px;
-                cursor: pointer;
-                box-shadow: 0px 5px 10px #19191a;
-            }
-            .button:active {
-                background-image: linear-gradient(to top,#68357a ,#b440de);
-            }
-            h1 {
+            body { font-family: Montserrat; text-align: left; color: white;margin:0px auto; padding-left: 30px;background-color: #2d2430;}
+            h2 {
                 text-shadow: 0px 5px 10px #19191a;
             }
             small {
@@ -47,18 +28,31 @@ static const char PROGMEM TEST_HTML[] = R"rawliteral(
             label {
                 color: #a77fb5;
             }
-            input {
+            input[type=submit] {
                 background-color: #912db5;
                 background-image: linear-gradient(to bottom, #b440de, #912db5);
                 border-color: #673a78;
                 color: white;
+                padding: 4px 20px;
+                font-family: Montserrat;
+                font-size: 18px;
+                text-align: center;
                 text-decoration: none;
                 border-radius: 8px;
+                margin: 10px 2px;
+                cursor: pointer;
                 box-shadow: 0px 5px 10px #19191a;
-                font-family: Montserrat;
             }
-            input:active {
+            input[type=submit]:active {
                 background-image: linear-gradient(to top,#68357a ,#b440de);
+            }
+            input{
+                box-shadow: 0px 5px 10px #19191a;
+                background-color: white;
+                border-color: #912db5;
+                border-radius: 8px;
+                border-width: 3px;
+                font-family: Montserrat;
             }
         </style>
     </head>
@@ -83,7 +77,7 @@ static const char PROGMEM TEST_HTML[] = R"rawliteral(
 </html>
 )rawliteral";
 
-static const char PROGMEM LOGIN_HTML[] = R"rawliteral(
+static const char PROGMEM OLDLOGIN_HTML[] = R"rawliteral(
 <!DOCTYPE html>
 <html>
     <head>
@@ -138,7 +132,7 @@ static const char PROGMEM LOGIN_HTML[] = R"rawliteral(
                 window.post = function(url, data) {
                   return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
                 }
-                post("/controlpanel/",username+"&"+password);
+                post("/login",username+"&"+password);
             }
         </script>
     </head>

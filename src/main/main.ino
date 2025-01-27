@@ -127,9 +127,9 @@
   #error "Camera model not selected"
 #endif
 
-#define SERVO_1      12
+#define SERVO_1      13
 #define MOTOR_1     4
-#define MOTOR_2     13
+#define MOTOR_2     12
 
 #define SERVO_STEP   1
 Servo servo1;
@@ -209,17 +209,50 @@ static esp_err_t stream_handler(httpd_req_t *req){
 }
 
 static esp_err_t login_handler(httpd_req_t *req){
-  char content[100];
-  size_t recv_size = sizeof(content);
-  int ret = httpd_req_recv(req,content,recv_size);
-  if (ret <= 0){
-    if (ret == HTTPD_SOCK_ERR_TIMEOUT){
-      httpd_resp_send_408(req);
+  char*  buf;
+  size_t buf_len;
+  char logcred[32] = {0,};
+  char passcred[32] = {0,};
+  
+  buf_len = httpd_req_get_url_query_len(req) + 1;
+  if (buf_len > 1) {
+    buf = (char*)malloc(buf_len);
+    if(!buf){
+      httpd_resp_send_500(req);
+      return ESP_FAIL;
     }
+    if (httpd_req_get_url_query_str(req, buf, buf_len) == ESP_OK) {
+      if (httpd_query_key_value(buf, "login", logcred, sizeof(logcred)) == ESP_OK) {
+      } else {
+        free(buf);
+        httpd_resp_send_404(req);
+        return ESP_FAIL;
+      }
+      if (httpd_query_key_value(buf, "pass", passcred, sizeof(passcred)) == ESP_OK) {
+      } else {
+        free(buf);
+        httpd_resp_send_404(req);
+        return ESP_FAIL;
+      }
+    } else {
+      free(buf);
+      httpd_resp_send_404(req);
+      return ESP_FAIL;
+    }
+    free(buf);
+  } else {
+    httpd_resp_send_404(req);
     return ESP_FAIL;
   }
-  Serial.write("test");
-  Serial.write(content);
+
+  if (!strcmp(logcred,control_panel_login) and !strcmp(passcred,control_panel_passwd)){
+    return httpd_resp_send(req, (const char *)MAIN_HTML, strlen(MAIN_HTML));
+  } else {
+    const char* statuss = "401";
+    const char* msg = "authorization error";
+    httpd_resp_send_err(req,HTTPD_401_UNAUTHORIZED,msg);
+    return ESP_FAIL;
+  }
 }
 
 static esp_err_t cmd_handler(httpd_req_t *req){
