@@ -72,7 +72,7 @@ static const char PROGMEM LOGIN_HTML[] = R"rawliteral(
             <input type="password" id="pass" name="pass"><br>
             <input type="submit" value="submit" style="margin: 10px 0px">
         </form>
-        <br><small>made by <a href="github.com/purpurb">purpurb</a></small>
+        <br><small>made by <a href="https://github.com/purpurb">purpurb</a></small>
     </body>
 </html>
 )rawliteral";
@@ -232,7 +232,7 @@ static const char PROGMEM MAIN_HTML[] = R"rawliteral(
   
     <br> <small> originally made by Rui Santos on <a href="https://randomnerdtutorials.com/esp32-cam-pan-and-tilt-2-axis/">randomnerdtutorials.com</a>
 </small><br>
-    <small> modified by <a href="https://github.com/purpurb/esp32IPcam">purpurb</a></small>
+    <small> modified by <a href="https://github.com/purpurb/espipcam">purpurb</a></small>
   
   </body>
 </html>
