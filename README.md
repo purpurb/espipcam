@@ -19,9 +19,9 @@ scheme with IR LED PCB
 ## setup routine
  ### 1st step: configure Arduino IDE sketch
    **(optional)** if you want to change pinout , you can in **main.ino** from line 130 to line 132 set your pin config for Servo motor and H-Bridge logic pins.
-   in **credentials.h** configure your WiFI network credentials and __camera control panel__ password and username.
-   in **main.ino** from line 25 to line 29 you can select your camera module model , by uncommenting line with name of your module. 
+   <br> in **credentials.h** configure your WiFI network credentials and __camera control panel__ password and username.
+   <br> in **main.ino** from line 25 to line 29 you can select your camera module model , by uncommenting line with name of your module. 
  ### 2nd step: compile and flash sketch into ESP32!
-   if you dont know how to do it , read Espressif docs on ESP32 boards.
+   <br> if you dont know how to do it , read Espressif docs on ESP32 boards.
 
 ### You can DM me in my discord (@purpurb.) , if i typed the word wrong way or something like that.   
